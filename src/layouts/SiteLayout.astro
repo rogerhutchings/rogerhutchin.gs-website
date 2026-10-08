@@ -17,7 +17,8 @@ const canonical = new URL('/', Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f1e9" />
+    <meta name="theme-color" content="#f4f1e9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1b1d1b" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -101,6 +102,18 @@ const canonical = new URL('/', Astro.site);
     --content-width: 80rem;
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --paper: #1b1d1b;
+      --ink: #edece5;
+      --muted: #b0b3ab;
+      --rule: #50554e;
+      --accent: #d88a75;
+      --grain-opacity: 0.014;
+    }
+  }
+
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
@@ -137,6 +150,7 @@ const canonical = new URL('/', Astro.site);
   a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
   a:hover { color: var(--accent); }
   a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 1px; }
+  ::selection { color: var(--paper); background: var(--accent); }
 
   .skip-link {
     position: absolute;
