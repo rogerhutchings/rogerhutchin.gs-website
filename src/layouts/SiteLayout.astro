@@ -137,7 +137,6 @@ const canonical = new URL('/', Astro.site);
   :root.theme-transition a,
   :root.theme-transition .skip-link,
   :root.theme-transition .site-header,
-  :root.theme-transition .eyebrow,
   :root.theme-transition .availability,
   :root.theme-transition .section,
   :root.theme-transition .section-label,
@@ -235,8 +234,7 @@ const canonical = new URL('/', Astro.site);
   .theme-toggle [hidden] { display: none; }
 
   .hero { padding-block: clamp(var(--space-step-4), 5vw, var(--space-step-6)) clamp(var(--space-step-6), 8vw, var(--space-step-7)); }
-  .eyebrow, .section-label, .availability { margin: 0; }
-  .eyebrow { color: var(--muted); font-size: var(--type-small); letter-spacing: 0.015em; }
+  .section-label, .availability { margin: 0; }
   h1, h2, h3, p { margin-top: 0; }
   .hero h1 {
     max-width: 24ch;
@@ -308,7 +306,6 @@ const canonical = new URL('/', Astro.site);
     :root.theme-transition a,
     :root.theme-transition .skip-link,
     :root.theme-transition .site-header,
-    :root.theme-transition .eyebrow,
     :root.theme-transition .availability,
     :root.theme-transition .section,
     :root.theme-transition .section-label,
