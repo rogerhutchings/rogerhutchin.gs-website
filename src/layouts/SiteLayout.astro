@@ -103,7 +103,7 @@ const canonical = new URL('/', Astro.site);
   }
 
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme]) {
       color-scheme: dark;
       --paper: #1b1d1b;
       --ink: #edece5;
@@ -112,6 +112,47 @@ const canonical = new URL('/', Astro.site);
       --accent: #d88a75;
       --grain-opacity: 0.014;
     }
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --paper: #1b1d1b;
+    --ink: #edece5;
+    --muted: #b0b3ab;
+    --rule: #50554e;
+    --accent: #d88a75;
+    --grain-opacity: 0.014;
+  }
+
+  :root[data-theme='light'] { color-scheme: light; }
+
+  :root.theme-transition,
+  :root.theme-transition body,
+  :root.theme-transition a,
+  :root.theme-transition .skip-link,
+  :root.theme-transition .site-header,
+  :root.theme-transition .eyebrow,
+  :root.theme-transition .availability,
+  :root.theme-transition .section,
+  :root.theme-transition .section-label,
+  :root.theme-transition .section-label span,
+  :root.theme-transition .entry p,
+  :root.theme-transition .experience,
+  :root.theme-transition .experience p,
+  :root.theme-transition .contact-primary,
+  :root.theme-transition .contact-secondary,
+  :root.theme-transition .site-footer,
+  :root.theme-transition .theme-toggle {
+    transition: color 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      background-color 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      outline-color 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  :root.theme-transition .theme-toggle svg {
+    transition: color 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      fill 280ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      stroke 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -167,8 +208,24 @@ const canonical = new URL('/', Astro.site);
   .shell { width: min(100%, var(--content-width)); margin-inline: auto; padding-inline: var(--page-gutter); }
   .site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-step-4); padding-block: var(--space-step-4); }
   .wordmark { font-family: var(--mono); font-size: var(--type-small); font-weight: 500; letter-spacing: 0.075em; text-decoration: none; }
-  .primary-nav ul { display: flex; gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); margin: 0; padding: 0; list-style: none; }
+  .primary-nav ul { display: flex; gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); margin: 0; padding: 0; list-style: none; align-items: center; }
   .primary-nav a { font-size: var(--type-small); text-decoration: none; }
+  .theme-toggle {
+    display: inline-grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 50%;
+    color: var(--ink);
+    background: transparent;
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .theme-toggle svg { width: 1rem; height: 1rem; }
+  .theme-toggle [hidden] { display: none; }
 
   .hero { padding-block: clamp(var(--space-step-4), 5vw, var(--space-step-6)) clamp(var(--space-step-6), 8vw, var(--space-step-7)); }
   .eyebrow, .section-label, .availability { margin: 0; }
@@ -237,4 +294,26 @@ const canonical = new URL('/', Astro.site);
   }
 
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) {
+    :root.theme-transition,
+    :root.theme-transition body,
+    :root.theme-transition a,
+    :root.theme-transition .skip-link,
+    :root.theme-transition .site-header,
+    :root.theme-transition .eyebrow,
+    :root.theme-transition .availability,
+    :root.theme-transition .section,
+    :root.theme-transition .section-label,
+    :root.theme-transition .section-label span,
+    :root.theme-transition .entry p,
+    :root.theme-transition .experience,
+    :root.theme-transition .experience p,
+    :root.theme-transition .contact-primary,
+    :root.theme-transition .contact-secondary,
+    :root.theme-transition .site-footer,
+    :root.theme-transition .theme-toggle,
+    :root.theme-transition .theme-toggle svg {
+      transition: none;
+    }
+  }
 </style>

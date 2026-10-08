@@ -11,9 +11,51 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           <li><a href="#work">Work</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li>
+            <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="false">
+              <svg data-theme-icon="light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+              </svg>
+              <svg data-theme-icon="dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden>
+                <path d="M20.2 15.7A8.5 8.5 0 0 1 8.3 3.8 8.5 8.5 0 1 0 20.2 15.7Z" />
+              </svg>
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
+
+    <script>
+      const root = document.documentElement;
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+      let manualTheme = root.dataset.theme || null;
+      let transitionTimeout;
+
+      function syncThemeToggle() {
+        const isDark = (manualTheme || (systemTheme.matches ? 'dark' : 'light')) === 'dark';
+        document.querySelectorAll<HTMLButtonElement>('.theme-toggle').forEach((button) => {
+          button.setAttribute('aria-pressed', String(isDark));
+          button.querySelector('[data-theme-icon="light"]')?.toggleAttribute('hidden', isDark);
+          button.querySelector('[data-theme-icon="dark"]')?.toggleAttribute('hidden', !isDark);
+        });
+      }
+
+      systemTheme.addEventListener('change', syncThemeToggle);
+      document.addEventListener('click', (event) => {
+        if (!(event.target instanceof Element)) return;
+        if (!event.target.closest('.theme-toggle')) return;
+
+        root.classList.add('theme-transition');
+        manualTheme = (manualTheme || (systemTheme.matches ? 'dark' : 'light')) === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = manualTheme;
+        syncThemeToggle();
+        window.clearTimeout(transitionTimeout);
+        transitionTimeout = window.setTimeout(() => root.classList.remove('theme-transition'), 320);
+      });
+      document.addEventListener('astro:page-load', syncThemeToggle);
+      syncThemeToggle();
+    </script>
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="page-title">
