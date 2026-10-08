@@ -6,7 +6,7 @@ interface Props {
 
 const {
   title = 'Roger Hutchings — Software engineer & technical consultant',
-  description = 'Roger Hutchings is a software engineer and technical consultant in Oxfordshire, helping teams make complex web applications easier to change.',
+  description = 'Roger Hutchings is a freelance software engineer and technical consultant in Oxfordshire, helping teams improve complex web applications.',
 } = Astro.props;
 const canonical = new URL('/', Astro.site);
 ---
@@ -17,13 +17,19 @@ const canonical = new URL('/', Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f1e9" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#1b1d1b" media="(prefers-color-scheme: dark)" />
+    <meta id="theme-color-light" name="theme-color" content="#f4f1e9" media="(prefers-color-scheme: light)" />
+    <meta id="theme-color-dark" name="theme-color" content="#1b1d1b" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Roger Hutchings" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <title>{title}</title>
   </head>
   <body>
@@ -207,13 +213,13 @@ const canonical = new URL('/', Astro.site);
 
   .shell { width: min(100%, var(--content-width)); margin-inline: auto; padding-inline: var(--page-gutter); }
   .site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-step-4); padding-block: var(--space-step-4); }
-  .wordmark { font-family: var(--mono); font-size: var(--type-small); font-weight: 500; letter-spacing: 0.075em; text-decoration: none; }
+  .wordmark { display: inline-flex; min-height: 2.75rem; align-items: center; font-family: var(--mono); font-size: var(--type-small); font-weight: 500; letter-spacing: 0.075em; text-decoration: none; }
   .primary-nav ul { display: flex; gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); margin: 0; padding: 0; list-style: none; align-items: center; }
-  .primary-nav a { font-size: var(--type-small); text-decoration: none; }
+  .primary-nav a { display: inline-flex; min-height: 2.75rem; align-items: center; font-size: var(--type-small); text-decoration: none; }
   .theme-toggle {
     display: inline-grid;
-    width: 2rem;
-    height: 2rem;
+    width: 2.75rem;
+    height: 2.75rem;
     place-items: center;
     padding: 0;
     border: 1px solid var(--rule);
@@ -224,6 +230,7 @@ const canonical = new URL('/', Astro.site);
   }
   .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
   .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .theme-toggle:active { background: color-mix(in srgb, var(--accent), transparent 88%); }
   .theme-toggle svg { width: 1rem; height: 1rem; }
   .theme-toggle [hidden] { display: none; }
 
@@ -244,6 +251,7 @@ const canonical = new URL('/', Astro.site);
   .hero-intro { max-width: 43rem; margin-bottom: var(--space-step-3); font-family: var(--serif); font-size: var(--type-lead); line-height: 1.48; }
   .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-step-3) var(--space-step-5); margin-top: var(--space-step-4); }
   .availability { color: var(--muted); font-size: var(--type-small); }
+  .text-link, .contact-secondary, .site-footer a { display: inline-flex; min-height: 2.75rem; align-items: center; }
   .text-link { font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: 0.28em; }
 
   .section {
@@ -288,7 +296,7 @@ const canonical = new URL('/', Astro.site);
     .entries { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 440px) {
     :root { --page-gutter: var(--space-step-3); }
     .site-header { align-items: flex-start; flex-direction: column; justify-content: center; gap: var(--space-step-1); }
   }

@@ -39,6 +39,10 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           button.querySelector('[data-theme-icon="light"]')?.toggleAttribute('hidden', isDark);
           button.querySelector('[data-theme-icon="dark"]')?.toggleAttribute('hidden', !isDark);
         });
+        if (manualTheme) {
+          document.querySelector('#theme-color-light')?.setAttribute('media', isDark ? 'not all' : 'all');
+          document.querySelector('#theme-color-dark')?.setAttribute('media', isDark ? 'all' : 'not all');
+        }
       }
 
       systemTheme.addEventListener('change', syncThemeToggle);
@@ -124,8 +128,8 @@ import SiteLayout from '../layouts/SiteLayout.astro';
           <p class="contact-copy">If you have a web application that needs building, improving or untangling, I’d be happy to hear about it.</p>
           <div class="contact-links">
             <!-- TODO: Add a direct email link once Roger supplies the address. -->
-            <a class="contact-primary" href="https://www.linkedin.com/in/roger-hutchings" target="_blank" rel="noreferrer">Get in touch →</a>
-            <a class="contact-secondary" href="https://github.com/rogerhutchings" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="contact-primary" href="https://www.linkedin.com/in/roger-hutchings" target="_blank" rel="noopener noreferrer" aria-label="Get in touch on LinkedIn (opens in a new tab)">Get in touch →</a>
+            <a class="contact-secondary" href="https://github.com/rogerhutchings" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">GitHub</a>
           </div>
         </div>
       </section>
