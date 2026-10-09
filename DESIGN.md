@@ -2,9 +2,9 @@
 
 The page takes cues from independent technical journals and small architecture practices: a quiet paper ground, full-width sections, generous spacing and fine rules. Newsreader gives headings and the hero introduction a bookish voice; Source Sans 3 keeps longer copy direct and readable. A monochrome noise layer sits behind the content and repeats on a 160 × 160px tile. The filter can produce its own alpha, while `--grain-opacity` (0.022) controls the overall opacity of the fixed pseudo-element layer. No additional opacity is applied inside the SVG.
 
-The accent is reserved for section numbering and interactive hover/focus states. Sections stay unboxed and use full-width layouts, with each numbered label above its content. Capabilities use four columns on wide screens, two on tablets and one on mobile. Experience entries stack the organisation heading above its description. Navigation remains in view without a menu or client-side code.
+The accent is reserved for section numbering and interactive hover/focus states. Sections stay unboxed and use full-width layouts, with each numbered label above its content. Capabilities use three columns on wide screens, two on tablets and one on mobile. Selected work uses two columns on desktop, with the project and organisation in the first column and its description in the second; these stack on mobile. Navigation remains in view without a menu.
 
-Dark mode follows the operating system through `prefers-color-scheme`. It overrides the paper, ink, muted, rule and accent tokens, and sets the matching `color-scheme`; the dark grain opacity is reduced to keep the texture subtle. Selection and browser theme colour follow the active palette. No theme script or manual toggle is used.
+The system `prefers-color-scheme` setting chooses the initial light or dark theme. The theme toggle switches between those themes for the current page view; the choice is not saved and resets to the system preference on reload. A theme change transitions the colours over 280ms, except when reduced motion is requested. The dark theme overrides the paper, ink, muted, rule and accent tokens, sets the matching `color-scheme`, and reduces the grain opacity to keep the texture subtle. Selection and browser theme colour follow the active palette.
 
 ## Modular scales
 

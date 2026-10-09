@@ -27,6 +27,15 @@ pnpm build
 
 Astro writes the production site to `dist/`.
 
+## Checks and formatting
+
+```sh
+pnpm check
+pnpm format:check
+```
+
+Use `pnpm format` to apply Prettier formatting.
+
 ## Preview
 
 ```sh

@@ -42,6 +42,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
                             </svg>
                             <svg
                                 data-theme-icon="dark"
+                                data-icon-hidden
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -49,7 +50,6 @@ import SiteLayout from '../layouts/SiteLayout.astro';
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 aria-hidden="true"
-                                hidden
                             >
                                 <path d="M20.2 15.7A8.5 8.5 0 0 1 8.3 3.8 8.5 8.5 0 1 0 20.2 15.7Z" />
                             </svg>
@@ -65,7 +65,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
                 '(prefers-color-scheme: dark)',
             );
             let manualTheme = root.dataset.theme || null;
-            let transitionTimeout;
+            let transitionTimeout: number | undefined;
 
             function syncThemeToggle() {
                 const isDark =
@@ -77,10 +77,10 @@ import SiteLayout from '../layouts/SiteLayout.astro';
                         button.setAttribute('aria-pressed', String(isDark));
                         button
                             .querySelector('[data-theme-icon="light"]')
-                            ?.toggleAttribute('hidden', isDark);
+                            ?.toggleAttribute('data-icon-hidden', isDark);
                         button
                             .querySelector('[data-theme-icon="dark"]')
-                            ?.toggleAttribute('hidden', !isDark);
+                            ?.toggleAttribute('data-icon-hidden', !isDark);
                     });
                 if (manualTheme) {
                     document
