@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title = 'Roger Hutchings — Software engineer & technical consultant',
-  description = 'Roger Hutchings is a freelance software engineer and technical consultant in Oxfordshire, helping teams improve complex web applications.',
+  title = 'Roger Hutchings — Freelance front-end engineer',
+  description = 'Freelance front-end engineer based in Oxfordshire, working primarily with TypeScript and React on complex web applications. Available for contract and project work.',
 } = Astro.props;
 const canonical = new URL('/', Astro.site);
 ---
@@ -212,7 +212,10 @@ const canonical = new URL('/', Astro.site);
 
   .shell { width: min(100%, var(--content-width)); margin-inline: auto; padding-inline: var(--page-gutter); }
   .site-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-step-4); padding-block: var(--space-step-4); }
-  .wordmark { display: inline-flex; min-height: 2.75rem; align-items: center; font-family: var(--mono); font-size: var(--type-small); font-weight: 500; letter-spacing: 0.075em; text-decoration: none; }
+  .wordmark { display: inline-flex; min-height: 2.75rem; align-items: baseline; color: var(--ink); font-size: 1.5rem; line-height: 1; text-decoration: none; white-space: nowrap; }
+  .wordmark-name { font-family: var(--serif); font-weight: 450; letter-spacing: -0.045em; }
+  .wordmark-dot { margin-inline: 0.035em; color: var(--accent); font-family: var(--serif); font-weight: 450; }
+  .wordmark-domain { font-family: var(--mono); font-size: 0.78em; font-weight: 500; letter-spacing: -0.06em; }
   .primary-nav ul { display: flex; gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); margin: 0; padding: 0; list-style: none; align-items: center; }
   .primary-nav a { display: inline-flex; min-height: 2.75rem; align-items: center; font-size: var(--type-small); text-decoration: none; }
   .theme-toggle {
@@ -261,14 +264,21 @@ const canonical = new URL('/', Astro.site);
   }
   .section-label { color: var(--muted); font-family: var(--mono); font-size: var(--type-step-neg-1); line-height: 1.4; letter-spacing: 0.045em; text-transform: uppercase; }
   .section-label span { margin-right: var(--space-step-1); color: var(--accent); }
-  .entries { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); row-gap: var(--space-step-5); }
+  .entries { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(var(--space-step-3), 3vw, var(--space-step-5)); row-gap: var(--space-step-5); }
   .entry h3, .experience h3 { margin-bottom: var(--space-step-1); font-family: var(--serif); font-size: var(--type-entry); font-weight: 500; letter-spacing: -0.025em; line-height: 1.17; }
   .entry p, .experience p { max-width: 34rem; margin-bottom: 0; color: var(--muted); }
   .experience-list { display: grid; }
-  .experience { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-step-1); padding-block: var(--space-step-4); border-top: 1px solid color-mix(in srgb, var(--rule), transparent 28%); }
+  .experience { display: grid; grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 2fr); gap: var(--space-step-4); padding-block: var(--space-step-4); border-top: 1px solid color-mix(in srgb, var(--rule), transparent 28%); }
   .experience:first-child { padding-top: 0; border-top: 0; }
-  .experience h3 { margin: 0; font-size: var(--type-entry); }
+  .experience h3 { margin: 0 0 var(--space-step-1); font-size: var(--type-entry); }
+  .experience .experience-org { font-size: var(--type-small); }
+  .experience-copy { display: grid; gap: var(--space-step-2); }
+  .experience-copy p { margin: 0; }
+  .source-link { justify-self: start; color: var(--muted); font-size: var(--type-label); text-underline-offset: 0.25em; }
+  .source-link:hover { color: var(--accent); }
   .about-copy { max-width: 43rem; margin: 0; font-size: var(--type-lead); line-height: 1.52; }
+  .about-copy p { margin: 0; }
+  .about-copy p + p { margin-top: var(--space-step-3); }
   .contact-copy { max-width: 43rem; margin-bottom: var(--space-step-4); font-size: var(--type-body); }
   .contact-links { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-step-3) var(--space-step-4); }
   .contact-primary { display: inline-flex; align-items: center; min-height: 2.75rem; padding: var(--space-step-2) var(--space-step-3); color: var(--paper); background: var(--ink); font-weight: 600; text-decoration: none; }
@@ -280,18 +290,20 @@ const canonical = new URL('/', Astro.site);
   @media (max-width: 700px) {
     :root { --page-gutter: clamp(var(--space-step-3), 4vw, var(--space-step-4)); }
     .site-header { gap: var(--space-step-3); padding-block: var(--space-step-4); }
-    .wordmark { white-space: nowrap; }
+    .wordmark { font-size: clamp(1.2rem, 4.8vw, 1.4rem); }
     .primary-nav ul { gap: clamp(var(--space-step-2), 4vw, var(--space-step-3)); }
     .primary-nav a { font-size: var(--type-small); }
     .hero { padding-block: var(--space-step-4) var(--space-step-6); }
     .hero h1 { max-width: 24ch; }
     .section { grid-template-columns: 1fr; gap: var(--space-step-3); padding-block: var(--space-step-5); }
     .entries { grid-template-columns: 1fr; row-gap: var(--space-step-4); }
+    .experience { grid-template-columns: 1fr; gap: var(--space-step-2); }
     .site-footer { align-items: flex-start; flex-direction: column; }
   }
 
   @media (min-width: 701px) and (max-width: 1000px) {
     .entries { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .experience { grid-template-columns: minmax(10rem, 0.8fr) minmax(0, 2fr); gap: var(--space-step-3); }
   }
 
   @media (max-width: 440px) {
