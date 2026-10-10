@@ -31,6 +31,13 @@ const canonical = new URL('/', Astro.site);
         />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="canonical" href={canonical} />
+        <link
+            as="font"
+            crossorigin
+            href="/fonts/newsreader-latin.woff2"
+            rel="preload"
+            type="font/woff2"
+        />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={canonical} />
