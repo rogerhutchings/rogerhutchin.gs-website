@@ -43,3 +43,9 @@ pnpm preview
 ```
 
 The preview serves the generated production output locally.
+
+## Analytics
+
+[View the site's analytics on GoatCounter](https://rogerhutchings.goatcounter.com/)
+
+GoatCounter is an open-source, privacy-first analytics platform that measures site traffic without cookies or persistently storing personal data.
