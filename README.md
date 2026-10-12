@@ -43,7 +43,3 @@ pnpm preview
 ```
 
 The preview serves the generated production output locally.
-
-## Contact TODO
-
-- [ ] Add a direct email contact link when Roger supplies the address.
